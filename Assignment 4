@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    
+    int a;
+    //Display menu
+    printf("ROCK, PAPER, SCISSORS!\n\n");
+    printf("1. Rock\n");
+    printf("2. Paper\n");
+    printf("3. Scissor\n\n");
+    printf("Choose your move! (1-3): ");
+    scanf("%d", &a);
+    printf("\n");
+
+        if (a < 1 || a > 3) {
+        printf("Invalid choice! Please select a number between 1 and 3.\n");
+        return 1;}
+
+    if(a==1){printf("You: Rock\n");}
+    else if (a==2)printf("You: Paper\n");
+    else printf("You: Scissor\n");
+    
+    //seed with current time
+    srand(time(NULL));
+    //random number generator
+    int ran = rand() % 100;
+
+    if(ran<33)printf("Computer: Rock\n\n");
+    else if (ran < 66)printf("Computer: Paper\n\n");
+    else printf("Computer: Scissor\n\n");
+
+    //RESULT DECLARATION
+    if (a == 1) {  //Rock
+        if (ran < 33) {printf("It's a Draw!\n");} // Computer chose Rock
+        else if (ran < 66) {printf("You Lost!\n");} // Computer chose Paper
+        else {printf("YOU WON!\n");}}//Computer chose Scissors
+    
+    else if (a == 2) {  //Paper
+        if (ran < 33) {printf("YOU WON!\n");}  // Computer chose Rock
+        else if (ran < 66) {printf("It's a Draw!\n");}  // Computer chose Paper
+        else {printf("You Lost!\n");}}// Computer chose Scissors
+    
+    else {  //Scissor
+        if (ran < 33) {printf("You Lost!\n"); } // Computer chose Rock
+        else if (ran < 66) {printf("YOU WON!\n");  }// Computer chose Paper
+        else {printf("It's a Draw!\n");  }}// Computer chose Scissors
+
+
+    return 0; }
