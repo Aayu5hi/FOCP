@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_TRIES 3
+
+void printHangman(int tries) {
+    switch (tries) {
+        case 0:
+            printf("\n\n\n\n");
+            break;
+        case 1:
+            printf("\n  |\n  O\n\n\n");
+            break;
+        case 2:
+            printf("\n  |\n  O\n  |\n\n\n");
+            break;
+        case 3:
+            printf("\n  |\n  O\n /|\\\n\n\n");
+            break;
+        case 4:
+            printf("\n  |\n  O\n /|\\\n / \\\n\n\n");
+            break;
+    }
+}
+
+int main() {
+    char word[] = "hangman";
+    int len = strlen(word);
+    char guessed[len];
+    for (int i = 0; i < len; i++) {
+        guessed[i] = '_'; }
+
+    int tries = 0;
+    char guess;
+    int found;
+    
+    printf("Welcome to Hangman Game!\n");
+    
+    while (tries < MAX_TRIES) {
+        printf("\nWord: ");
+        for (int i = 0; i < len; i++) {
+            printf("%c ", guessed[i]);
+        }
+        
+        printf("\n\nYou have %d tries left.\n", MAX_TRIES - tries);
+        printHangman(tries);
+
+        printf("\nEnter a letter: ");
+        scanf(" %c", &guess);
+        
+        found = 0;
+        
+        for (int i = 0; i < len; i++) {
+            if (word[i] == guess && guessed[i] == '_') {
+                guessed[i] = guess;
+                found = 1;
+            }
+        }
+
+        if (!found) {
+            printf("Wrong guess!\n");
+            tries++;
+        } else {
+            printf("Good guess!\n");
+        }
+
+        int complete = 1;
+        for (int i = 0; i < len; i++) {
+            if (guessed[i] == '_') {
+                complete = 0;
+                break;
+            }
+        }
+        
+        if (complete) {
+            printf("\nCongratulations! You've guessed the word: %s\n", word);
+            break;
+        }
+    }
+    
+    if (tries == MAX_TRIES) {
+        printf("\nGame Over! The word was: %s\n", word);
+        printHangman(tries);
+    }
+
+    return 0; }
