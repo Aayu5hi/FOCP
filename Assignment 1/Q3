@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int subtract(int a, int b) {
+    
+    int bit = ~b + 1;
+    return a + bit; }
+
+int main() {
+    int a, b;
+
+    printf("Enter the first number: ");
+    scanf("%d", &a);
+    printf("Enter the second number: ");
+    scanf("%d", &b);
+
+    printf("The result of %d - %d is: %d\n", a, b, subtract(a, b));
+
+    return 0; }
