@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+
+void decimalToBinary(int n) {
+    int binary[32]; 
+    int index = 0;
+
+    if (n == 0) {
+        printf("Binary equivalent: 0\n");
+        return; }
+
+    while (n > 0) {
+        binary[index] = n % 2;
+        n = n / 2;
+        index++; }
+
+    printf("Binary equivalent: ");
+    for (int i = index - 1; i >= 0; i--) {
+        printf("%d", binary[i]); }
+    printf("\n"); }
+
+int binaryToDecimal(int binary) {
+    int decimal = 0;
+    int base = 1;
+
+    while (binary > 0) {
+        int lastDigit = binary % 10;
+        decimal += lastDigit * base;
+        base = base * 2;
+        binary = binary / 10; }
+
+    return decimal; }
+
+int main() {
+    int choice;
+    int number;
+
+    printf("Choose the operation:\n");
+    printf("1. Decimal to Binary\n");
+    printf("2. Binary to Decimal\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        printf("Enter a decimal number: ");
+        scanf("%d", &number);
+        decimalToBinary(number); }
+    else if (choice == 2) {
+        printf("Enter a binary number: ");
+        scanf("%d", &number);
+        printf("Decimal equivalent: %d\n", binaryToDecimal(number)); }
+    else {
+        printf("Invalid choice!\n"); }
+
+    return 0; }
